@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '../assets/logo.png';
+import Button from '../components/shared/Button';
 
 export default function Navbar() {
   const links = [
@@ -29,12 +30,12 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className='bg-gray-700 px-9 py-7 flex justify-between text-white'>
+    <nav className='absolute top-0 left-0 w-full bg-gray-700 px-9 py-7 flex justify-between text-white'>
       <div>
-        <Image src={Logo} alt='logo' width={340} height={135} />
+        <Image src={Logo} alt='logo' width={310} height={125} />
       </div>
 
-      <ul className='flex space-x-4 items-center '>
+      <ul className='flex space-x-5 items-center text-white font-normal text-base'>
         {links.map((link) => (
           <li key={link.path}>
             <Link className='py-1' href={link.path}>
@@ -42,6 +43,10 @@ export default function Navbar() {
             </Link>
           </li>
         ))}
+
+        <Button className='' onClick={() => {}}>
+          Take Action
+        </Button>
       </ul>
     </nav>
   );
