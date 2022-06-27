@@ -1,20 +1,8 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
+import Layout from '../widgets/Layout';
 
 const Home: NextPage = () => {
-  return (
-    <div>
-      <Head>
-        <title>{process.env.APP_NAME}</title>
-        <meta name='description' content='For the Better' />
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-
-      <main className='bg-red-300'>Hehe</main>
-
-      <footer>Footer</footer>
-    </div>
-  );
+  return <Layout>Test 123</Layout>;
 };
 
 export default Home;
