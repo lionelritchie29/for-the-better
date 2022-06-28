@@ -46,7 +46,7 @@ export default function Navbar({ children, bgImageName }: Props) {
       <nav
         className='py-7 relative'
         style={{
-          backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('assets/${bgImageName}')`,
+          backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('/assets/${bgImageName}')`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
         }}>

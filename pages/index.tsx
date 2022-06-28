@@ -57,7 +57,7 @@ const Home: NextPage = () => {
           </div>
         </section>
 
-        <section className='flex flex-col-reverse md:flex-row'>
+        <section className='flex flex-col-reverse md:flex-row mb-32'>
           <div className='w-full md:w-1/2 flex flex-col items-center justify-center text-center'>
             <h2 className='font-medium mt-2 text-3xl md:text-4xl mb-7'>Take Action</h2>
             <p className='font-light px-2 md:px-20 mb-6'>
