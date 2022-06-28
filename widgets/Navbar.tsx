@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Logo from '../public/assets/logo.png';
 import Button from '../components/shared/Button';
 import Head from 'next/head';
+import { MenuAlt4Icon } from '@heroicons/react/outline';
 
 type Props = {
   children: any;
@@ -43,18 +44,24 @@ export default function Navbar({ children, bgImageName }: Props) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <nav
-        className='px-9 py-7 relative'
+        className='py-7 relative'
         style={{
           backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('assets/${bgImageName}')`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
         }}>
-        <section className='flex justify-between text-white'>
+        <section className='px-9 flex justify-between text-white'>
           <div>
-            <Image src={Logo} alt='logo' width={310} height={125} />
+            <div className='block md:hidden'>
+              <Image src={Logo} alt='logo' width={165} height={75} />
+            </div>
+
+            <div className='hidden md:block'>
+              <Image src={Logo} alt='logo' width={310} height={125} />
+            </div>
           </div>
 
-          <ul className='flex space-x-5 items-center text-white font-normal text-base'>
+          <ul className='hidden md:flex space-x-5 items-center text-white font-normal text-base'>
             {links.map((link) => (
               <li key={link.path}>
                 <Link className='py-1' href={link.path}>
@@ -67,6 +74,10 @@ export default function Navbar({ children, bgImageName }: Props) {
               Take Action
             </Button>
           </ul>
+
+          <button className='block md:hidden'>
+            <MenuAlt4Icon className='w-8 h-8' />
+          </button>
         </section>
 
         <section className='min-h-[28rem] flex items-center justify-center z-20'>
