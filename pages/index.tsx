@@ -49,20 +49,20 @@ const Home: NextPage = () => {
               Find out about the projects we’re working on to bring textile sustainability come to
               life.
             </p>
-            <Button className='px-12 py-5' onClick={() => {}}>
+            <Button className='px-10 py-5' onClick={() => {}}>
               Learn more
             </Button>
           </div>
         </section>
 
         <section className='flex flex-col md:flex-row'>
-          <div className='w-full md:w-1/2 flex-col items-center justify-center text-center'>
+          <div className='w-full md:w-1/2 flex flex-col items-center justify-center text-center'>
             <h2 className='font-medium text-4xl mb-7'>Take Action</h2>
             <p className='font-light px-20 mb-6'>
               Ready to take the next step? You can become a contributor to our cause, or participate
               yourself.
             </p>
-            <Button className='px-12 py-5' onClick={() => {}}>
+            <Button className='px-10 py-5' onClick={() => {}}>
               Find Out How
             </Button>
           </div>
