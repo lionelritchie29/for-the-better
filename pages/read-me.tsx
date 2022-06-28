@@ -11,7 +11,7 @@ const ReadMePage: NextPage = () => {
             More Than Just
           </h1>
           <h2 className='font-bold text-center text-5xl'>Textile</h2>
-          <div className='absolute left-6 bottom-8'>
+          <div className='absolute left-6 sm:left-24 lg:left-64 bottom-8'>
             <p className='font-light mt-10 mr-9 max-w-sm'>
               Our Team visit to the Life Project in Bantar Gebang, donating clothes, and toys.
             </p>

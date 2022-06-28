@@ -4,6 +4,8 @@ import Logo from '../public/assets/logo.png';
 import Button from '../components/shared/Button';
 import Head from 'next/head';
 import { MenuAlt4Icon } from '@heroicons/react/outline';
+import DropdownNav from './DropdownNav';
+import { useRouter } from 'next/router';
 
 type Props = {
   children: any;
@@ -11,6 +13,7 @@ type Props = {
 };
 
 export default function Navbar({ children, bgImageName }: Props) {
+  const router = useRouter();
   const links = [
     {
       title: 'About',
@@ -51,22 +54,43 @@ export default function Navbar({ children, bgImageName }: Props) {
           backgroundSize: 'cover',
         }}>
         <section className='px-9 flex justify-between text-white'>
-          <div>
-            <div className='block md:hidden'>
+          <div className='block md:hidden cursor-pointer'>
+            <Link href='/' passHref={true}>
               <Image src={Logo} alt='logo' width={165} height={75} />
-            </div>
+            </Link>
+          </div>
 
-            <div className='hidden md:block'>
+          <div className='hidden md:block cursor-pointer'>
+            <Link href='/' passHref={true}>
               <Image src={Logo} alt='logo' width={310} height={125} />
-            </div>
+            </Link>
           </div>
 
           <ul className='hidden md:flex space-x-5 items-center text-white font-normal text-base'>
             {links.map((link) => (
               <li key={link.path}>
-                <Link className='py-1' href={link.path}>
-                  {link.title}
-                </Link>
+                {link.children ? (
+                  <DropdownNav link={link} />
+                ) : (
+                  <Link key={link.title} href={link.path} passHref={true}>
+                    {link.path === '/' ? (
+                      <div
+                        className={`cursor-pointer ${router.pathname === '/' ? 'underline' : ''}`}>
+                        {link.title}
+                      </div>
+                    ) : (
+                      <div
+                        className={`cursor-pointer ${
+                          router.pathname.includes(link.path) &&
+                          router.pathname.toLowerCase().includes(link.path.toLowerCase())
+                            ? 'underline'
+                            : ''
+                        }`}>
+                        {link.title}
+                      </div>
+                    )}
+                  </Link>
+                )}
               </li>
             ))}
 
