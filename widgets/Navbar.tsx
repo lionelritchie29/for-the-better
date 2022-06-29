@@ -275,7 +275,7 @@ export default function Navbar({ children, bgImageName, videoName }: Props) {
           </motion.div>
         </section>
 
-        <section className='min-h-[40rem] flex items-center justify-center z-20'>
+        <section className='min-h-[30rem] md:min-h-[40rem] flex items-center justify-center z-20'>
           {children}
         </section>
       </nav>
