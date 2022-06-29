@@ -236,8 +236,8 @@ export default function Navbar({ children, bgImageName }: Props) {
                 <span>Back</span>
               </li>
               {links
-                .find((l) => l.path === '/about')
-                .children.map((link) => (
+                .find((loc) => loc.path === '/about')!
+                .children!.map((link) => (
                   <li key={link.path}>
                     <div
                       onClick={() => router.push(`/about${link.path}`)}
