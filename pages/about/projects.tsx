@@ -19,7 +19,7 @@ const ReadMePage: NextPage<Props> = ({ data }) => {
         </div>
       </Navbar>
 
-      <Layout>
+      <Layout data={data}>
         <section className='mb-12'>
           <h2 className='font-medium text-3xl md:text-4xl mt-20 md:mt-36 mb-20 md:mb-32'>
             Here&rsquo;s just a small sampling of what we have jump started since October 2021

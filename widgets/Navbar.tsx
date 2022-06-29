@@ -162,7 +162,7 @@ export default function Navbar({ children, bgImageName }: Props) {
               }
               className='flex flex-col space-y-5 relative'>
               {links.map((link) => (
-                <li key={link.path}>
+                <li key={link.path} className='flex justify-center'>
                   {link.children ? (
                     <button
                       onClick={() => setOpenSubMenu(true)}
@@ -195,6 +195,15 @@ export default function Navbar({ children, bgImageName }: Props) {
                   )}
                 </li>
               ))}
+              <li>
+                <button
+                  className='px-8 py-4 bg-black border border-white hover:bg-gray-900 rounded-full shadow-xl'
+                  onClick={() => {
+                    router.push('take-action');
+                  }}>
+                  Take Action
+                </button>
+              </li>
             </motion.ul>
           </motion.div>
 
@@ -249,7 +258,7 @@ export default function Navbar({ children, bgImageName }: Props) {
           </motion.div>
         </section>
 
-        <section className='min-h-[28rem] flex items-center justify-center z-20'>
+        <section className='min-h-[40rem] flex items-center justify-center z-20'>
           {children}
         </section>
       </nav>

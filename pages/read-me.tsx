@@ -1,8 +1,10 @@
+import axios, { AxiosResponse } from 'axios';
 import { NextPage } from 'next';
+import { Data } from '../models/Data';
 import Layout from '../widgets/Layout';
 import Navbar from '../widgets/Navbar';
 
-const ReadMePage: NextPage = () => {
+const ReadMePage: NextPage<{ data: Data }> = ({ data }) => {
   return (
     <>
       <Navbar bgImageName='hero-3.jpg'>
@@ -10,18 +12,18 @@ const ReadMePage: NextPage = () => {
           <h1 className='text-4xl text-center md:text-5xl mb-4 font-medium tracking-wide'>
             More Than Just
           </h1>
-          <h2 className='font-bold text-center text-5xl'>Textile</h2>
+          <h2 className='font-bold text-center text-5xl md:text-6xl'>Textile</h2>
           <div className='absolute left-6 sm:left-24 lg:left-64 bottom-8'>
             <p className='font-light mt-10 mr-9 max-w-sm'>
               Our Team visit to the Life Project in Bantar Gebang, donating clothes, and toys.
             </p>
 
-            <p className='font-light mt-5'>Oct 2, 2022</p>
+            <p className='font-light mt-5'>Oct 2, 2021</p>
           </div>
         </div>
       </Navbar>
 
-      <Layout>
+      <Layout data={data}>
         <section className='mb-12'>
           <h2 className='font-medium text-3xl md:text-4xl mt-20 mb-10 md:max-w-4xl mx-auto'>
             Opening new doors through textile waste
@@ -59,6 +61,17 @@ const ReadMePage: NextPage = () => {
       </Layout>
     </>
   );
+};
+
+export const getServerSideProps = async () => {
+  const result: AxiosResponse<Data> = await axios.get(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/data`,
+  );
+  return {
+    props: {
+      data: result.data,
+    },
+  };
 };
 
 export default ReadMePage;

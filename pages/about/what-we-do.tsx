@@ -5,8 +5,9 @@ import Navbar from '../../widgets/Navbar';
 import DiagramImg from '../../public/assets/diagram.png';
 import Image from 'next/image';
 import FeatureAccordion from '../../components/what-we-do/FeatureAccordion';
+import axios, { AxiosResponse } from 'axios';
 
-const ReadMePage: NextPage = () => {
+const ReadMePage: NextPage<{ data: Data }> = ({ data }) => {
   return (
     <>
       <Navbar bgImageName='hero-4.jpg'>
@@ -20,7 +21,7 @@ const ReadMePage: NextPage = () => {
         </div>
       </Navbar>
 
-      <Layout>
+      <Layout data={data}>
         <section className='mb-12 max-w-4xl mx-auto'>
           <h2 className='font-medium mt-16 mb-6 text-lg'>Our Mission</h2>
           <p className='font-light leading-7'>
@@ -50,6 +51,16 @@ const ReadMePage: NextPage = () => {
       </Layout>
     </>
   );
+};
+export const getServerSideProps = async () => {
+  const result: AxiosResponse<Data> = await axios.get(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/data`,
+  );
+  return {
+    props: {
+      data: result.data,
+    },
+  };
 };
 
 export default ReadMePage;

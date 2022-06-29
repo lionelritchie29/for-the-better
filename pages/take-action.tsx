@@ -1,9 +1,11 @@
+import axios, { AxiosResponse } from 'axios';
 import { NextPage } from 'next';
 import Button from '../components/shared/Button';
+import { Data } from '../models/Data';
 import Layout from '../widgets/Layout';
 import Navbar from '../widgets/Navbar';
 
-const TakeActionPage: NextPage = () => {
+const TakeActionPage: NextPage<{ data: Data }> = ({ data }) => {
   return (
     <>
       <Navbar bgImageName='hero-2.jpg'>
@@ -14,7 +16,7 @@ const TakeActionPage: NextPage = () => {
         </div>
       </Navbar>
 
-      <Layout>
+      <Layout data={data}>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-12 md:py-28'>
           <section className='mb-12 max-w-sm mx-auto'>
             <h2 className='font-medium text-center text-3xl md:text-4xl mt-20 md:mt-0 mb-4 md:max-w-4xl mx-auto'>
@@ -27,9 +29,11 @@ const TakeActionPage: NextPage = () => {
             </p>
 
             <div className='text-center mt-8'>
-              <Button className='w-full py-6' onClick={() => {}}>
-                Make a Donation
-              </Button>
+              <a href={data.donation_link} target='_blank' rel='noreferrer'>
+                <Button className='w-full py-6' onClick={() => {}}>
+                  Make a Donation
+                </Button>
+              </a>
             </div>
           </section>
 
@@ -44,15 +48,28 @@ const TakeActionPage: NextPage = () => {
             </p>
 
             <div className='text-center mt-8'>
-              <Button className='w-full py-6' onClick={() => {}}>
-                Follow us on IG
-              </Button>
+              <a href={data.instagram} target='_blank' rel='noreferrer'>
+                <Button className='w-full py-6' onClick={() => {}}>
+                  Follow us on IG
+                </Button>
+              </a>
             </div>
           </section>
         </div>
       </Layout>
     </>
   );
+};
+
+export const getServerSideProps = async () => {
+  const result: AxiosResponse<Data> = await axios.get(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/data`,
+  );
+  return {
+    props: {
+      data: result.data,
+    },
+  };
 };
 
 export default TakeActionPage;

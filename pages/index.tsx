@@ -5,8 +5,14 @@ import Navbar from '../widgets/Navbar';
 import HomeOne from '../public/assets/home-1.jpg';
 import HomeTwo from '../public/assets/home-2.jpg';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+import axios, { AxiosResponse } from 'axios';
+import { Data } from '../models/Data';
 
-const Home: NextPage = () => {
+const Home: NextPage<{ data: Data }> = ({ data }) => {
+  console.log({ data });
+  const router = useRouter();
   return (
     <>
       <Navbar bgImageName='hero-1.jpg'>
@@ -15,13 +21,17 @@ const Home: NextPage = () => {
           <h1 className='text-5xl md:text-6xl mb-14 font-semibold tracking-wide'>
             Starts With You
           </h1>
-          <Button className='px-12 py-5 text-base' onClick={() => {}}>
+          <Button
+            className='px-12 py-5 text-base'
+            onClick={() => {
+              router.push('/about/what-we-do');
+            }}>
             Learn More
           </Button>
         </div>
       </Navbar>
 
-      <Layout>
+      <Layout data={data}>
         <section className='text-center mb-20 md:mb-40'>
           <h2 className='font-medium text-3xl md:text-4xl mt-20 mb-10'>
             We’re on a mission to reduce textile waste.
@@ -35,7 +45,11 @@ const Home: NextPage = () => {
         </section>
 
         <section className='flex flex-col md:flex-row mb-28 md:mb-32'>
-          <div className='w-full md:w-1/2'>
+          <motion.div
+            initial={{ y: '2rem', opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className='w-full md:w-1/2'>
             <Image
               src={HomeOne}
               className='object-cover'
@@ -43,7 +57,7 @@ const Home: NextPage = () => {
               width={600}
               height={550}
             />
-          </div>
+          </motion.div>
 
           <div className='w-full md:w-1/2 flex flex-col items-center justify-center text-center'>
             <h2 className='font-medium text-3xl mt-2 md:mt-0 md:text-4xl mb-7'>Our Organization</h2>
@@ -51,7 +65,11 @@ const Home: NextPage = () => {
               Find out about the projects we’re working on to bring textile sustainability come to
               life.
             </p>
-            <Button className='px-10 py-5' onClick={() => {}}>
+            <Button
+              className='px-12 py-5'
+              onClick={() => {
+                router.push('/about/projects');
+              }}>
               Learn more
             </Button>
           </div>
@@ -64,12 +82,20 @@ const Home: NextPage = () => {
               Ready to take the next step? You can become a contributor to our cause, or participate
               yourself.
             </p>
-            <Button className='px-10 py-5' onClick={() => {}}>
+            <Button
+              className='px-10 py-5'
+              onClick={() => {
+                router.push('/take-action');
+              }}>
               Find Out How
             </Button>
           </div>
 
-          <div className='w-full md:w-1/2'>
+          <motion.div
+            initial={{ y: '2rem', opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className='w-full md:w-1/2'>
             <Image
               src={HomeTwo}
               className='object-cover'
@@ -77,11 +103,22 @@ const Home: NextPage = () => {
               width={600}
               height={550}
             />
-          </div>
+          </motion.div>
         </section>
       </Layout>
     </>
   );
+};
+
+export const getServerSideProps = async () => {
+  const result: AxiosResponse<Data> = await axios.get(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/data`,
+  );
+  return {
+    props: {
+      data: result.data,
+    },
+  };
 };
 
 export default Home;
