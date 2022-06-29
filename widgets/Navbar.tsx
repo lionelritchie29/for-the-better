@@ -11,10 +11,11 @@ import { useEffect, useState } from 'react';
 
 type Props = {
   children: any;
-  bgImageName: string;
+  bgImageName?: string;
+  videoName?: string;
 };
 
-export default function Navbar({ children, bgImageName }: Props) {
+export default function Navbar({ children, bgImageName, videoName }: Props) {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState(false);
@@ -72,11 +73,27 @@ export default function Navbar({ children, bgImageName }: Props) {
       </Head>
       <nav
         className='py-7 relative'
-        style={{
-          backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('/assets/${bgImageName}')`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-        }}>
+        style={
+          bgImageName
+            ? {
+                backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('/assets/${bgImageName}')`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+              }
+            : {}
+        }>
+        {videoName && (
+          <video
+            className='absolute top-0 left-0 -z-10'
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            autoPlay
+            muted
+            loop
+            id='myVideo'>
+            <source src={`assets/${videoName}`} type='video/mp4' />
+          </video>
+        )}
+
         {openMobileMenu && (
           <button
             onClick={() => {

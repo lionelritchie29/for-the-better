@@ -8,7 +8,7 @@ import Navbar from '../widgets/Navbar';
 const TakeActionPage: NextPage<{ data: Data }> = ({ data }) => {
   return (
     <>
-      <Navbar bgImageName='hero-2.jpg'>
+      <Navbar videoName='video-1.mp4'>
         <div className='text-white p-6'>
           <h1 className='text-5xl text-center md:text-6xl mb-4 font-semibold tracking-wide'>
             Take Action
