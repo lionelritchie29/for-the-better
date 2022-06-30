@@ -6,7 +6,12 @@ module.exports = {
     './widgets/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'primary-gray': '#a8a6a1',
+        'primary-gray-dark': '#98958f',
+      },
+    },
   },
   plugins: [],
 };

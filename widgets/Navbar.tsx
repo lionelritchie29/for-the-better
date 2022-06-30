@@ -139,7 +139,7 @@ export default function Navbar({ children, bgImageName, videoName }: Props) {
             ))}
 
             <button
-              className='px-4 py-2 bg-black border border-white hover:bg-gray-900 rounded-full shadow-xl'
+              className='px-4 py-2 bg-primary-gray hover:bg-primary-gray-dark rounded-full shadow-xl'
               onClick={() => {
                 router.push('take-action');
               }}>

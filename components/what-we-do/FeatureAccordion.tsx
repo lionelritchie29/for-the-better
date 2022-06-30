@@ -1,15 +1,59 @@
-import { PlusIcon } from '@heroicons/react/outline';
-import { useState } from 'react';
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemPanel,
-} from 'react-accessible-accordion';
+import { MinusIcon, PlusIcon } from '@heroicons/react/outline';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+type AccordionProps = {
+  i: number;
+  expanded: number | false;
+  setExpanded: Dispatch<SetStateAction<number | false>>;
+  item: {
+    title: string;
+    content: string[];
+  };
+};
+
+const Accordion = ({ i, expanded, setExpanded, item }: AccordionProps) => {
+  const isOpen = i === expanded;
+
+  // By using `AnimatePresence` to mount and unmount the contents, we can animate
+  // them in and out while also only rendering the contents of open accordions
+  return (
+    <>
+      <motion.div
+        initial={false}
+        className='flex justify-between items-center font-medium text-lg py-4 border-t border-black cursor-pointer'
+        onClick={() => setExpanded(isOpen ? false : i)}>
+        <div>{item.title}</div>
+        {isOpen ? <MinusIcon className='w-5 h-5 block' /> : <PlusIcon className='w-5 h-5 block' />}
+      </motion.div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.section
+            key='content'
+            initial='collapsed'
+            animate='open'
+            exit='collapsed'
+            variants={{
+              open: { opacity: 1, height: 'auto' },
+              collapsed: { opacity: 0, height: 0 },
+            }}
+            transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}>
+            <div>
+              {item.content.map((c, idx) => (
+                <p className='text-black pb-4 font-light leading-7' key={idx}>
+                  {c}
+                </p>
+              ))}
+            </div>
+          </motion.section>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
 
 export default function FeatureAccordion() {
-  const [currentExpanededId, setCurrentExpandedId] = useState('');
+  const [expanded, setExpanded] = useState<false | number>(0);
 
   const items = [
     {
@@ -58,32 +102,10 @@ export default function FeatureAccordion() {
   ];
 
   return (
-    <Accordion
-      className='mt-9 border-t border-b border-black'
-      onChange={(ids: string[]) => setCurrentExpandedId(ids[0])}>
-      {items.map((item) => (
-        <AccordionItem key={item.title}>
-          <AccordionItemHeading>
-            <AccordionItemButton>
-              <div className='flex justify-between'>
-                <span className='block'>{item.title}</span>
-                <span className='block'>
-                  <PlusIcon className='w-5 h-5' />
-                </span>
-              </div>
-            </AccordionItemButton>
-          </AccordionItemHeading>
-          <AccordionItemPanel>
-            <div className='flex-col space-y-4'>
-              {item.content.map((c, i) => (
-                <p className='font-light -mt-5 leading-7' key={i}>
-                  {c}
-                </p>
-              ))}
-            </div>
-          </AccordionItemPanel>
-        </AccordionItem>
+    <div className='border-b border-black mt-16 md:mt-0'>
+      {items.map((item, idx) => (
+        <Accordion key={idx} i={idx} expanded={expanded} setExpanded={setExpanded} item={item} />
       ))}
-    </Accordion>
+    </div>
   );
 }
