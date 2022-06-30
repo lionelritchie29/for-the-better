@@ -19,7 +19,15 @@ const ContactPage: NextPage<{ data: Data }> = ({ data }) => {
         </section>
 
         <section className='mb-12 max-w-4xl mx-auto flex flex-col md:flex-row'>
-          <div className='md:w-1/2 bg-gray-200 rounded h-72'></div>
+          <div className='md:w-1/2 flex bg-gray-200 rounded min-h-[14rem] md:min-h-[20rem] relative'>
+            <iframe
+              className='grow'
+              src='https://maps.google.com/maps?q=apartemen%20setia%20budi&t=&z=13&ie=UTF8&iwloc=&output=embed'
+              frameBorder={0}
+              scrolling='no'
+              marginHeight={0}
+              marginWidth={0}></iframe>
+          </div>
           <div className='md:w-1/2 flex items-center justify-center md:px-12 mt-16 md:mt-0'>
             <div className='font-light leading-7'>
               <p>{data.full_address}</p>
