@@ -53,7 +53,7 @@ const Accordion = ({ i, expanded, setExpanded, item }: AccordionProps) => {
 };
 
 export default function FeatureAccordion() {
-  const [expanded, setExpanded] = useState<false | number>(0);
+  const [expanded, setExpanded] = useState<false | number>(-1);
 
   const items = [
     {

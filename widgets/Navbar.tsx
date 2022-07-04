@@ -198,7 +198,7 @@ export default function Navbar({ children, bgImageName, videoName }: Props) {
                   ) : (
                     <div
                       onClick={() => router.push(link.path)}
-                      className='flex justify-center items-center text-gray-900 text-3xl font-light text-center'>
+                      className='cursor-pointer flex justify-center items-center text-gray-900 text-3xl font-light text-center'>
                       <span
                         className={`block ${
                           router.pathname.includes(link.path) &&
@@ -214,7 +214,7 @@ export default function Navbar({ children, bgImageName, videoName }: Props) {
               ))}
               <li>
                 <button
-                  className='px-8 py-4 bg-black border border-white hover:bg-gray-900 rounded-full shadow-xl'
+                  className='px-9 py-5 text-xl bg-primary-gray hover:bg-primary-gray-dark rounded-full shadow-xl'
                   onClick={() => {
                     router.push('take-action');
                   }}>

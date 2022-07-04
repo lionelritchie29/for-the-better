@@ -9,12 +9,12 @@ const ReadMePage: NextPage<{ data: Data }> = ({ data }) => {
     <>
       <Navbar bgImageName='hero-3.jpg'>
         <div className='text-white p-6'>
-          <h1 className='text-4xl text-center md:text-5xl mb-4 font-medium tracking-wide'>
+          <h1 className='text-4xl text-center md:text-5xl mb-2 font-medium tracking-wide'>
             More Than Just
           </h1>
           <h2 className='font-bold text-center text-5xl md:text-6xl'>Textile</h2>
           <div className='absolute left-6 sm:left-24 lg:left-64 bottom-8'>
-            <p className='font-light mt-10 mr-9 max-w-sm'>
+            <p className='font-light text-sm md:text-base mt-10 mr-9 max-w-sm'>
               Our Team visit to the Life Project in Bantar Gebang, donating clothes, and toys.
             </p>
 
