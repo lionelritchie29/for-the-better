@@ -141,7 +141,7 @@ export default function Navbar({ children, bgImageName, videoName }: Props) {
             <button
               className='px-4 py-2 bg-primary-gray hover:bg-primary-gray-dark rounded-full shadow-xl'
               onClick={() => {
-                router.push('take-action');
+                router.push('/take-action');
               }}>
               Take Action
             </button>
@@ -216,7 +216,7 @@ export default function Navbar({ children, bgImageName, videoName }: Props) {
                 <button
                   className='px-9 py-5 text-xl bg-primary-gray hover:bg-primary-gray-dark rounded-full shadow-xl'
                   onClick={() => {
-                    router.push('take-action');
+                    router.push('/take-action');
                   }}>
                   Take Action
                 </button>
